@@ -4,9 +4,9 @@ import requests
 from pathlib import Path
 
 # gao_de_API_KEY用于从高德获取地理信息
-gao_de_API_KEY = "576ec063223d84ec0e434ed3d7f643ef"
+gao_de_API_KEY = ""
 # deepseek_API_KEY用于通过AI搜索分析某个景点的门票和攻略
-siliconflow_API_KEY = "sk-rmowtxsqnozzmimshgbyszudpvfvzcnlbxbdecwnpswtpkts"
+siliconflow_API_KEY = ""
 # 请求网址
 search_url = "https://restapi.amap.com/v3/place/text"
 siliconflow_url = "https://api.siliconflow.cn/v1/chat/completions"

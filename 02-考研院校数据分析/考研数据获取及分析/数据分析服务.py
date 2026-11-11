@@ -15,10 +15,10 @@ M = '\033[95m'   # 紫
 W = '\033[97m'   # 白
 E = '\033[0m'    # 重置
 
-API_URL = 'https://spark-api-open.xf-yun.com/v1/chat/completions'
-# 注意：这里用的是 APIpassword（单一字符串），不是 APIKey:APISecret
-# 获取地址：https://console.xfyun.cn/services/bmx1
-API_PASSWORD = 'XJIbyJdmmUECwCJzYyHH:HFdBjXvKzEXTelUTnXLK'  # 请替换为您的 APIpassword
+API_URL = 'https://open.bigmodel.cn/api/paas/v4/chat/completions'
+# 智谱 GLM-4-Flash 免费模型，API Key 走环境变量 GLM_API，不要写进代码提交到仓库
+# 获取地址：https://open.bigmodel.cn/usercenter/apikeys
+API_PASSWORD = os.getenv('GLM_API', '')
 HEADERS = {
     "Authorization": "Bearer " + API_PASSWORD,
     'Content-Type': 'application/json'
@@ -180,7 +180,8 @@ def ai_fenxi(xuexiao, zhuanye, fenshu):
 
     # 5. 调用AI
     print(Y + '\n  [AI 分析中，请稍候...]' + E)
-    data = {'model': 'lite', 'messages': [{'role': 'user', 'content': prompt}]}
+    data = {'model': 'glm-4-flash', 'messages': [{'role': 'user', 'content': prompt}],
+            'max_tokens': 1000, 'temperature': 0.3}
     resp = requests.post(API_URL, headers=HEADERS, json=data, timeout=90)
     resp_json = resp.json()
 
